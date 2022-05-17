@@ -1,7 +1,7 @@
 import React from 'react'
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Container, Nav, NavDropdown, Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 const Header = () => {
     const userLogin = useSelector(state => state.userLogin)
@@ -32,6 +32,22 @@ const Header = () => {
                             </NavDropdown>
                         ):(
                             <Nav.Link as={NavLink} to="/login"><i className="fas fa-sign-in-alt"></i> Login</Nav.Link>
+                        )}
+
+                        {userInfo && userInfo.isAdmin && (
+                            <NavDropdown title='Admin' id="adminuser">         
+                                <Nav.Link as={NavLink} to="/admin/userlist">
+                                    <NavDropdown.Item>Users</NavDropdown.Item>
+                                </Nav.Link>
+
+                                <Nav.Link as={NavLink} to="/admin/productlist">
+                                    <NavDropdown.Item>Products</NavDropdown.Item>
+                                </Nav.Link>
+
+                                <Nav.Link as={NavLink} to="/admin/orderlist">
+                                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                                </Nav.Link>
+                            </NavDropdown>
                         )}
                         
                     </Nav>
