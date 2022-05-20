@@ -25,6 +25,7 @@ import {
     orderCreateReducer, 
     orderDetailsReducer, 
     orderlistMyReducer, 
+    orderListReducer, 
     orderPayReducer 
 } from './reducers/orderReducers'
 
@@ -42,6 +43,7 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     orderListMy: orderlistMyReducer,
+    orderList: orderListReducer,
     // admin part start here
     userList: userListReducer,
     userDelete: userDeleteReducer,
