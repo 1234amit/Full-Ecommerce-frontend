@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Messages from '../components/Messages'
 import Paginate from '../components/Paginate'
+import ProductCarousel from '../components/ProductCarousel'
 
 
 const HomeScreen = ({history}) => {
@@ -32,6 +33,7 @@ const HomeScreen = ({history}) => {
 
     return (
         <div>
+            {!keyword && <ProductCarousel />}
             <h1>Latest Product</h1>
             {
                 loading ? <Loader />
