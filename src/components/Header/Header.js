@@ -1,8 +1,10 @@
 import React from 'react'
+import "./Header.css"
 import { Navbar, Container, Nav, NavDropdown, Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
+import SearchBox from '../SearchBox'
 const Header = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -20,7 +22,12 @@ const Header = () => {
                     <Navbar.Brand as={NavLink} to="/">AmitShop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
+                        {/* search box */}
+                        
+                            <SearchBox />
+                        
+
+                    <Nav className="right-nav">
                         <Nav.Link as={NavLink} to="/cart"><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
                         {userInfo ? (
                             <NavDropdown title={userInfo.name} id="username">         

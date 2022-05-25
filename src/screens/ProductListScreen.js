@@ -6,12 +6,13 @@ import { Button, Table, Nav, Row, Col } from 'react-bootstrap'
 import { createProduct, deleteProduct, listProducts } from '../actions/productActions'
 import { NavLink } from 'react-router-dom'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
+import Paginate from '../components/Paginate'
 
 const ProductListScreen = ({history, match}) => {
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
-    const {loading, error, products} = productList
+    const {loading, error, products, page, pages} = productList
 
 
     const productDelete = useSelector(state => state.productDelete)
@@ -24,6 +25,8 @@ const ProductListScreen = ({history, match}) => {
  
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
+
+    let keyword = history.location.search
 
 
 
@@ -43,10 +46,10 @@ const ProductListScreen = ({history, match}) => {
         if(successCreate){
             history.push(`/admin/product/${createdProduct._id}/edit`)
         }else{
-            dispatch(listProducts())
+            dispatch(listProducts(keyword))
         }
         
-    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct])
+    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct, keyword])
 
 
     const deleteHandler = (id) =>{
@@ -128,6 +131,8 @@ const ProductListScreen = ({history, match}) => {
                                     ))}
                                 </tbody>
                             </Table>
+
+                            <Paginate page={page} pages={pages} isAdmin={true}></Paginate>
                         </div>
                     )}
 
